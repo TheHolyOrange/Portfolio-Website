@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Portfolio Website</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://kit.fontawesome.com/3ce6bbf8c8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="header">
+		<div class="container">
+			<nav>
+				<img src="images/logo.png" class="logo">
+				<ul>
+					<li><a href="#header">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#portfolio">Portfolio</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</nav>
+			<div class="header-text">
+				<p>Hey, I'm</p>
+				<h1>Tanisha Sriram</h1>
+			</div>
+		</div>
+	</div>
+<!-------------------------------------about--------------------------------->
+	<div id="about">
+		<div class="container">
+			<div class="row">
+				<div class="about-col-1">
+					<img src="images/new_dog_image_edited.jpg">
+				</div>
+				<div class="about-col-2">
+					<h1 class="sub-title">About Me</h1>
+					<p>As a keen student intrigued by technology-related topics, I'm excited about exploring the world of technology.
+						I'm eager to learn and improve, aiming to make a positive impact in this fast-changing field.
+						I am skilled in solving problems, a creative thinker and enthusiastic about using technology to create innovative solutions.</p>
+					<div class="tab-titles">
+						<p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+						<p class="tab-links" onclick="opentab('education')">Education</p>
+					</div>
+					<div class="tab-contents active-tab" id="skills">
+						<ul>
+							<li><span>Programming Language</span><br>Python & C++</li>
+							<li><span>Web Technologies</span><br>HTML & CSS</li>
+							<li><span>Database</span><br>MySQL</li>
+							<li><span>Tools</span><br>Arduino</li>
+						</ul>
+					</div>
+					<div class="tab-contents" id="education">
+						<ul>
+							<li><span>AMM School</span><br>Graduation Year: 2023<br>Percentage: 99.3% (596/600)</li>
+							<li><span>SSN College of Engineering</span><br>Computer Science Engineering<br>Expected Graduation: 2027</li>
+							<li><span>Indian Institute of Technology, Madras</span><br>Bachelor of Science in Data Science</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!------------------------------portfolio------------------------------------>
+<div id="portfolio">
+	<div class="container">
+		<h1 class="sub-title">My work</h1>
+		<div class="work-list">
+			<div class="work">
+				<img src="images/work1.jpg">
+				<div class="layer">
+					<h3>Natural Language Processing</h3>
+					<p>To determine whether a claim in a tweet and/or transcriptions is worth fact-checking.</p>
+					<a href="images/work1.pdf"><i class="fas fa-external-link-alt"></i></a>
+				</div>
+			</div>
+			<div class="work">
+				<img src="images/work2.jpg">
+				<div class="layer">
+					<h3>Arduino</h3>
+					<p>Using an Arduino Uno microcontroller to control a car with motors and sensors</p>
+					<a href="arduino_page.html"><i class="fas fa-external-link-alt"></i></a>
+				</div>
+			</div>
+			<div class="work">
+				<img src="images/work3.jpg">
+				<div class="layer">
+					<h3>UI/UX Design</h3>
+					<p>Creating a basic website using HTML & CSS</p>
+					<a href="images/work3.pdf"><i class="fas fa-external-link-alt"></i></a>
+				</div>
+			</div>
+		</div>
+			<a href="images/extracurricular.pdf" class="btn">See Extracurricular</a>
+	</div>
+</div>
+<!------------------------------contact-------------------------------------->
+<div id="contact">
+	<div class="container">
+		<div class="row">
+			<div class="contact-left">
+				<h1 class="sub-title">Contact Me</h1>
+				<p><i class="fas fa-paper-plane"></i>tanisha.sriram2006@gmail.com</p>
+				<p><i class="fas fa-phone-square-alt"></i>9962690303</p>
+				<div class="social-icons">
+					<a href="https://www.instagram.com/tanisha_sriram/"><i class="fab fa-instagram"></i></a>
+					<a href="https://www.linkedin.com/in/tanisha-sriram-91b4202a3/"><i class="fab fa-linkedin"></i></a>
+				</div>
+			</div>
+			<div class="contact-right">
+				<form name="submit-to-google-sheet">
+					<input type="text" name="Name" placeholder="Your Name" required>
+					<input type="Email" name="Email" placeholder="Your Email" required>
+					<textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+					<button type="submit" class="btn btn2">Submit</button>
+				</form>
+				<span id="msg">
+					
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	var tablinks=document.getElementsByClassName('tab-links');
+	var tabcontents=document.getElementsByClassName('tab-contents');
+	
+	function opentab(tabname){
+		for(tablink of tablinks){
+			tablink.classList.remove("active-link");
+		}
+		for(tabcontent of tabcontents){
+			tabcontent.classList.remove("active-tab");
+		}
+		event.currentTarget.classList.add("active-link");
+		document.getElementById(tabname).classList.add("active-tab");
+	}
+</script>
+<script>
+	const scriptURL = 'https://script.google.com/macros/s/AKfycbxbpSXLDCARcrMwuEgiOnKMU7QXXwzOFLEccTUQNcQLlyRr3MeeUQdQSaR3a1RgEaY/exec'
+	const form = document.forms['submit-to-google-sheet']
+	const msg=document.getElementByID("msg")
+	form.addEventListener('submit', e => {
+	  e.preventDefault()
+	  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+		.then(response => {
+			msg.innerHTML="Message sent successfully"
+			setTimeout(function(){
+				msg.innerHTML=""
+			},5000)
+			form.reset()
+		})
+		.catch(error => console.error('Error!', error.message))
+	})
+  </script>
+</body>
+</html>
